@@ -1,0 +1,32 @@
+.button:hover{
+	-fx-background-color: #00C853;
+	-fx-te-fill: #FFFFFF;
+}
+
+.button{
+	-fx-background-color: #FFFFFF;
+}
+
+.panel{
+}
+
+.VBox{
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-color: red;
+    -fx-background-color: red;
+}
+
+.subVBox{
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-color: blue;
+    -fx-background-color: blue;
+}
+
+.subMenu{
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+    -fx-background-color: gray;
+}
