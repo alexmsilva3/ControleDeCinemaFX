@@ -47,13 +47,16 @@ public class HomeController implements Initializable {
     
     @FXML
     public void dashboard(ActionEvent event) {
-
+        try {
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"));
+            AnchorPaneBg.getChildren().setAll(a);
+        }catch (Exception e){}
     }
     
     @FXML
     public void vendaIngresso(ActionEvent event) {
         try {
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/vendaIngresso.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/VendaIngresso.fxml"));
             AnchorPaneBg.getChildren().setAll(a);
         }catch (Exception e){}
     }
@@ -61,7 +64,7 @@ public class HomeController implements Initializable {
     @FXML
     public void listaFilmes() throws IOException {
         try {
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/listaFilmes.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaFilmes.fxml"));
             AnchorPaneBg.getChildren().setAll(a);
         }catch (Exception e){}
     }
@@ -69,7 +72,7 @@ public class HomeController implements Initializable {
     @FXML
     public void listaSalas(ActionEvent event) {
         try {
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/listaSalas.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaSalas.fxml"));
             AnchorPaneBg.getChildren().setAll(a);
         }catch (Exception e){}
     }
@@ -77,7 +80,7 @@ public class HomeController implements Initializable {
     @FXML
     public void listaSessoes(ActionEvent event) {
         try {
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/listaSessoes.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaSessoes.fxml"));
             AnchorPaneBg.getChildren().setAll(a);
         }catch (Exception e){}
     }
@@ -85,7 +88,7 @@ public class HomeController implements Initializable {
     @FXML
     public void listaLogin(ActionEvent event) {
         try {
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/listaLogin.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaLogin.fxml"));
             AnchorPaneBg.getChildren().setAll(a);
         }catch (Exception e){}
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="AnchorPanelListaSessao" prefHeight="631.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaSessoesController">
+   <children>
+      <Label layoutX="20.0" layoutY="28.0" prefHeight="17.0" prefWidth="260.0" text="Lista de Sessões" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtSearch" layoutX="20.0" layoutY="77.0" prefHeight="25.0" prefWidth="408.0" promptText="Buscar Sessões" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="78.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btnAddSessao" layoutX="693.0" layoutY="25.0" onAction="#novaSessao" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: #007700;" text="Adicionar" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnEditarSessao" layoutX="619.0" layoutY="78.0" onAction="#editaSessao" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: #1e5484;" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="78.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tableViewFilmes" layoutX="20.0" layoutY="142.0" prefHeight="405.0" prefWidth="728.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
+        <columns>
+          <TableColumn fx:id="tblColIdSessao" prefWidth="28.0" text="#" />
+          <TableColumn fx:id="tblColFime" minWidth="0.0" prefWidth="317.0" text="Filme" />
+            <TableColumn fx:id="tblColSala" prefWidth="123.0" text="Sala" />
+            <TableColumn fx:id="tblColData" prefWidth="124.0" text="Data" />
+            <TableColumn fx:id="tblColHora" prefWidth="57.0" text="Hora" />
+            <TableColumn fx:id="tblColIngresso" prefWidth="78.0" text="Ing. Livres" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnVoltar" layoutX="20.0" layoutY="560.0" onAction="#VoltarMenuPrincipal" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: gray;" text="Voltar" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnRemoverSessao" layoutX="619.0" layoutY="560.0" onAction="#removeSessao" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: red;" text="Excluir" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

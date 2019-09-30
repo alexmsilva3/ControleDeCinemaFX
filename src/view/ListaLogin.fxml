@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="AnchorPanelListaLogin" prefHeight="631.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaLoginController">
+   <children>
+      <Label layoutX="20.0" layoutY="45.0" prefHeight="17.0" prefWidth="260.0" text="Logins" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnAddLogin" layoutX="693.0" layoutY="25.0" onAction="#novoLogin" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: #007700;" text="Adicionar" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnEditarLogin" layoutX="619.0" layoutY="78.0" onAction="#editaLogin" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: #1e5484;" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="78.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tableViewUsuarios" layoutX="20.0" layoutY="142.0" prefHeight="405.0" prefWidth="728.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
+        <columns>
+          <TableColumn fx:id="tblColN" prefWidth="46.0" text="#" />
+          <TableColumn fx:id="tblColNome" minWidth="0.0" prefWidth="297.0" text="Nome" />
+            <TableColumn fx:id="tblColUsuario" prefWidth="384.0" text="Usuário" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnVoltar" layoutX="20.0" layoutY="560.0" onAction="#VoltarMenuPrincipal" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: gray;" text="Voltar" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnRemoverLogin" layoutX="619.0" layoutY="560.0" onAction="#removeLogin" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: red;" text="Excluir" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

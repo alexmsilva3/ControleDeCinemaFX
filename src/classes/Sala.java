@@ -13,7 +13,7 @@ public class Sala {
         return idSala;
     }
     
-    public void setIdSessao(int idSala) {
+    public void setIdSala(int idSala) {
         this.idSala = idSala;
     }
 

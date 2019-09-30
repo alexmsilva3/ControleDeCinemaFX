@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import impl.org.controlsfx.skin.DecorationPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="631.0" prefWidth="768.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.DashboardController">
-    
+<AnchorPane id="AnchorPane" fx:id="AnchorPaneBg" prefHeight="631.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+   <children>
+      <DecorationPane layoutX="40.0" layoutY="20.0" prefHeight="218.0" prefWidth="220.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0" />
+      <DecorationPane layoutX="274.0" layoutY="20.0" prefHeight="218.0" prefWidth="220.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
+      <DecorationPane layoutX="508.0" layoutY="20.0" prefHeight="218.0" prefWidth="220.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.rightAnchor="40.0" />
+   </children>
 </AnchorPane>
