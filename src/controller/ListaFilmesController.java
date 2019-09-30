@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class ListaFilmesController implements Initializable {
 
-     @FXML
+    @FXML
     private AnchorPane AnchorPanelListaFilme;
 
     @FXML

@@ -4,13 +4,13 @@ import java.util.Date;
 import java.sql.Time;
 
 public class Sessao {
-    private int idSessao;
+    private Integer idSessao;
     private Filme filme;
     private Sala sala;
     private Date data;
     private Time horario;
-    private int valorIngresso;
-    private int ingressosDisponiveis;
+    private Integer valorIngresso;
+    private Integer ingressosDisponiveis;
     
     public Sessao(){
         this.idSessao = 0;
@@ -22,7 +22,7 @@ public class Sessao {
         this.ingressosDisponiveis = 0;
     }
 
-    public int getIdSessao() {
+    public Integer getIdSessao() {
         return idSessao;
     }
 
@@ -62,7 +62,7 @@ public class Sessao {
         this.horario = horario;
     }
 
-    public int getValorIngresso() {
+    public Integer getValorIngresso() {
         return valorIngresso;
     }
 
@@ -70,7 +70,7 @@ public class Sessao {
         this.valorIngresso = valorIngresso;
     }
 
-    public int getIngressosDisponiveis() {
+    public Integer getIngressosDisponiveis() {
         return ingressosDisponiveis;
     }
 

@@ -1,15 +1,15 @@
 package classes;
 
 public class Sala {
-    private int idSala;
-    private int capacidade;
+    private Integer idSala;
+    private Integer capacidade;
     
     public Sala(){
         this.idSala = 0;
         this.capacidade = 0;
     }
 
-    public int getIdSala() {
+    public Integer getIdSala() {
         return idSala;
     }
     
@@ -17,7 +17,7 @@ public class Sala {
         this.idSala = idSala;
     }
 
-    public int getCapacidade() {
+    public Integer getCapacidade() {
         return capacidade;
     }
     

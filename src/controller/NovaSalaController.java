@@ -1,6 +1,6 @@
 package controller;
 
-import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,19 +8,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-public class NovoLoginController implements Initializable {
+public class NovaSalaController implements Initializable {
+
+     @FXML
+    private AnchorPane AnchorPaneNovaSala;
 
     @FXML
-    private AnchorPane AnchorPaneNovoLogin;
+    private JFXTextField txtCapacidade;
 
     @FXML
-    private JFXTextField txtUsuario;
-
-    @FXML
-    private JFXTextField txtNome;
-
-    @FXML
-    private JFXPasswordField txtSenha;
+    private JFXButton btnVoltar;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -28,10 +25,12 @@ public class NovoLoginController implements Initializable {
     }    
     
     @FXML
-    void VoltarMenuPrincipal() {
+    void SalvarSala() {
+
     }
 
     @FXML
-    void SalvarLogin() {
+    void VoltarMenuPrincipal() {
+
     }
 }

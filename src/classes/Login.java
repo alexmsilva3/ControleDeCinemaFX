@@ -1,7 +1,7 @@
 package classes;
 
 public class Login {
-    private int idLogin;
+    private Integer idLogin;
     private String nome;
     private String usuario;
     private String senha;
@@ -13,7 +13,7 @@ public class Login {
         this.senha = "";
     }
 
-    public int getIdLogin() {
+    public Integer getIdLogin() {
         return idLogin;
     }
 

@@ -1,45 +1,49 @@
+
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-
-public class NovoFilmeController implements Initializable {
-
-    @FXML
-    private AnchorPane AnchorPaneNovoFilme;
-    
-    @FXML
-    private JFXTextField txtTitulo;
+public class NovaSessaoController implements Initializable {
 
     @FXML
-    private JFXTextField txtDiretor;
+    private AnchorPane AnchorPaneNovaSessao;
 
     @FXML
-    private JFXTextField txtGenero;
+    private JFXTextField txtFilme;
 
     @FXML
-    private JFXTextField txtIdioma;
+    private JFXTextField txtSala;
 
     @FXML
-    private JFXTextField txtDuracao;
+    private JFXTextField txtValor;
 
     @FXML
     private JFXButton btnVoltar;
 
-    
+    @FXML
+    private JFXDatePicker Data;
+
+    @FXML
+    private JFXTimePicker Hora;
+
+    @FXML
+    private JFXTextField txtLotacao;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     
     @FXML
-    void SalvarFilme() {
+    void SalvarSessao() {
 
     }
 
@@ -47,5 +51,5 @@ public class NovoFilmeController implements Initializable {
     void VoltarMenuPrincipal() {
 
     }
-
+    
 }

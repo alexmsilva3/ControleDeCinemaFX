@@ -1,12 +1,12 @@
 package classes;
 
 public class Filme {
-    private int idFilme;
+    private Integer idFilme;
     private String titulo;
     private String diretor;
     private String genero;
     private String idioma;
-    private int duracao;
+    private Integer duracao;
     
     public Filme(){
         this.idFilme = 0;
@@ -17,7 +17,7 @@ public class Filme {
         this.duracao = 0;
     }
     
-    public int getIdFilme() {
+    public Integer getIdFilme() {
         return idFilme;
     }
 
@@ -57,7 +57,7 @@ public class Filme {
         this.idioma = idioma;
     }
 
-    public int getDuracao() {
+    public Integer getDuracao() {
         return duracao;
     }
 
