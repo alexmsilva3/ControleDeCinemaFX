@@ -24,6 +24,7 @@ public class ConexaoMySQL {
 
             // Configurando a nossa conexão com um banco de dados//
             String url = "jdbc:mysql://mysql22.redehost.com.br:41890/cinema?useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo";
+            //String url = "jdbc:mysql://localhost:3306/cinema?useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo";
             String username = "cinema";        //nome de um usuário de seu BD      
             String password = "PB(1&@NaW8";      //sua senha de acesso
             connection = DriverManager.getConnection(url, username, password);
