@@ -30,9 +30,6 @@ public class ListaLoginController implements Initializable {
 
     @FXML
     private TableView<Login> tableViewUsuarios;
-    
-    @FXML
-    private TableColumn<Login, String> tblColN;
 
     @FXML
     private TableColumn<Login, String> tblColNome;
@@ -44,7 +41,6 @@ public class ListaLoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tblColN.setCellValueFactory(new PropertyValueFactory<>("idlogin"));
         tblColNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tblColUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
         

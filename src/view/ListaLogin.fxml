@@ -26,7 +26,6 @@
       </JFXButton>
       <TableView fx:id="tableViewUsuarios" layoutX="20.0" layoutY="142.0" prefHeight="405.0" prefWidth="728.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
         <columns>
-          <TableColumn fx:id="tblColN" prefWidth="46.0" text="#" />
           <TableColumn fx:id="tblColNome" minWidth="0.0" prefWidth="297.0" text="Nome" />
             <TableColumn fx:id="tblColUsuario" prefWidth="384.0" text="Usuário" />
         </columns>

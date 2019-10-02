@@ -42,3 +42,4 @@
 01/10/2019 19:57:41.343 : java.lang.NumberFormatException: For input string: "A"
 02/10/2019 08:52:35.287 : java.lang.NumberFormatException: For input string: "Vingadores"
 02/10/2019 08:53:31.590 : java.lang.NumberFormatException: For input string: "Vingadores"
+02/10/2019 13:57:09.060 : DELETE FROM login WHERE idlogin = '1' 

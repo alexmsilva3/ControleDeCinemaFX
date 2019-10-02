@@ -1,2 +1,1 @@
-descomentar os logs
 bug da imagem
