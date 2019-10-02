@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,16 +9,11 @@
 
 <AnchorPane id="AnchorPane" fx:id="AnchorPanelListaSala" prefHeight="631.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaSalasController">
    <children>
-      <Label layoutX="20.0" layoutY="28.0" prefHeight="17.0" prefWidth="260.0" text="Lista de Salas" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label layoutX="20.0" layoutY="28.0" prefHeight="70.0" prefWidth="320.0" text="Lista de Salas" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="40.0">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtSearch" layoutX="20.0" layoutY="77.0" prefHeight="25.0" prefWidth="408.0" promptText="Buscar Sala" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="78.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXTextField>
       <JFXButton fx:id="btnAddSala" layoutX="693.0" layoutY="25.0" onAction="#novaSala" prefHeight="48.0" prefWidth="129.0" style="-fx-background-color: #007700;" text="Adicionar" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="18.0" />
@@ -30,7 +24,7 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tableViewFilmes" layoutX="20.0" layoutY="142.0" prefHeight="405.0" prefWidth="728.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
+      <TableView fx:id="tableViewSalas" layoutX="20.0" layoutY="142.0" prefHeight="405.0" prefWidth="728.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
         <columns>
           <TableColumn fx:id="tblColIdSala" prefWidth="81.0" text="#" />
           <TableColumn fx:id="tblColCapacidade" minWidth="0.0" prefWidth="646.0" text="Capacidade" />

@@ -15,7 +15,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtSearch" layoutX="20.0" layoutY="77.0" prefHeight="25.0" prefWidth="408.0" promptText="Buscar Filme" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="78.0">
+      <JFXTextField fx:id="txtSearch" layoutX="20.0" layoutY="71.0" onKeyPressed="#search" prefHeight="25.0" prefWidth="408.0" promptText="Buscar Filme" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="71.0">
          <font>
             <Font size="18.0" />
          </font>

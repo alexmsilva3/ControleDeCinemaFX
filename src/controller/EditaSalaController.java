@@ -27,9 +27,6 @@ public class EditaSalaController implements Initializable {
     
     @FXML
     private JFXTextField txtCapacidade;
-
-    @FXML
-    private JFXButton btnVoltar;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,7 +49,7 @@ public class EditaSalaController implements Initializable {
 
             if (validador == 1) {
                 sala.setIdSala(Integer.parseInt(idSala.getText()));
-                sala.setCapacidade(Integer.parseInt(txtCapacidade.toString()));
+                sala.setCapacidade(Integer.parseInt(txtCapacidade.getText()));
 
                 if (servicoSala.editaSala(sala)) {
                     if(servicos.Mensagem(Alert.AlertType.CONFIRMATION,"Cadastro Realizado", "Dados gravados com sucesso", null, null)){
@@ -83,7 +80,7 @@ public class EditaSalaController implements Initializable {
                 AnchorPaneNovaSala.getChildren().setAll(a);
             }
         }catch (Exception e) {
-            //servicos.gravaLog(e.toString());
+            servicos.gravaLog(e.toString());
             AnchorPaneNovaSala.setVisible(false);
         }
     }

@@ -6,11 +6,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ServicoSala {
     mysql banco = new mysql();
+    ServicosGerais servico = new ServicosGerais();
     
-    public void insereSala(Sala sala){
+    public boolean insereSala(Sala sala){
         try{
             Class.forName(banco.getDriver());
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
@@ -22,9 +26,11 @@ public class ServicoSala {
             PreparedStatement ex = conn.prepareStatement(query);
             ex.execute();
             conn.close();
+            return true;
         }
         catch (Exception e) {
-            //servico.gravaLog("Erro: Não foi possível adicionar o usuario. Motivo: "+ e);
+            servico.gravaLog("Erro: Não foi possível adicionar a Sala. Motivo: "+ e);
+            return false;
         }
     }
     
@@ -35,7 +41,7 @@ public class ServicoSala {
             Class.forName(banco.getDriver());
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
 
-            String query = "SELECT * FROM Sala ";
+            String query = "SELECT * FROM sala ";
 
             PreparedStatement ex = conn.prepareStatement(query);
             ResultSet rs = ex.executeQuery(query);
@@ -51,9 +57,33 @@ public class ServicoSala {
 
             conn.close();
         } catch (Exception e) {
-            //servico.gravaLog("Não foi possível buscar a sala. Motivo:" + e);
+            servico.gravaLog("Não foi possível buscar a sala. Motivo:" + e);
         }
         return listaSala;
+    }
+    
+    public ObservableList observableListSala(){
+        try {
+            Class.forName(banco.getDriver());
+            Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
+
+            String query = "SELECT * FROM sala ";
+
+            PreparedStatement ex = conn.prepareStatement(query);
+            ResultSet rs = ex.executeQuery(query);
+            List<String> list = new ArrayList<String>();
+            
+            while (rs.next()) {
+                list.add(rs.getString("idSala"));
+            }
+            conn.close();
+            ObservableList obListSala = FXCollections.observableList(list);
+            
+            return obListSala;
+        } catch (Exception e) {
+            servico.gravaLog("Não foi possível buscar a sala. Motivo:" + e);
+        }
+        return null;
     }
     
     public Sala buscaSala(int idSala){
@@ -75,8 +105,7 @@ public class ServicoSala {
 
             conn.close();
         } catch (Exception e) {
-            System.err.println("Erro! " + e);
-            //servico.gravaLog("Não foi possível buscar a sala. Motivo:" + e);
+            servico.gravaLog("Não foi possível buscar a sala. Motivo:" + e);
         }
         
         return sala;
@@ -88,8 +117,8 @@ public class ServicoSala {
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
             
             String query = "UPDATE sala " +
-            "SET capaciade = '"+sala.getCapacidade()+"' " +
-            "WHERE idfilme = '"+sala.getIdSala()+"' ";
+            "SET capacidade = '"+sala.getCapacidade()+"' " +
+            "WHERE idsala = '"+sala.getIdSala()+"' ";
             
             PreparedStatement ex = conn.prepareStatement(query);
             ex.execute();
@@ -99,7 +128,7 @@ public class ServicoSala {
             
         }
         catch (Exception e) {
-            //servico.gravaLog("Erro: Não foi possível editar a sala. Motivo: "+ e);
+            servico.gravaLog("Erro: Não foi possível editar a sala. Motivo: "+ e);
             return false;
         }
     }
@@ -109,19 +138,19 @@ public class ServicoSala {
             Class.forName(banco.getDriver());
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
             
-            String query = "DELETE FROM sala WHERE IdLogin = '"+idSala+"' ";
+            String query = "DELETE FROM sala WHERE idsala = '"+idSala+"' ";
             PreparedStatement ex = conn.prepareStatement(query);
-            ResultSet rs = ex.executeQuery(query);
+            ex.execute();
             //servico.gravaLog(query);
             
-            //Remover Sessão
+            //Remover Sessão. Não implementado por motivos didaticos
             //query = "DELETE FROM Sessao WHERE idsala = '"+idSala+"' ";
             //ex.execute(query);
             
             conn.close();
             
         } catch (Exception e) {
-            System.err.println("Erro! " + e);
+            servico.gravaLog("Não foi possivel remover a sala" + e);
         }
     }
 }

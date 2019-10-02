@@ -3,10 +3,10 @@ package servicos;
 import java.sql.*;
 
 public class mysql {
-    private String url = "jdbc:mysql://mysql22.redehost.com.br:41890/cinema";//?useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo";
+    private String url = "jdbc:mysql://localhost:3306/cinema";//?useSSL=false&useTimezone=true&serverTimezone=America/Sao_Paulo";
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String usuario = "cinema";
-    private String senha = "PB(1&@NaW8";
+    private String usuario = "root";
+    private String senha = "1234";
     private Connection conexao;
     
     public void conectar() throws ClassNotFoundException, SQLException{

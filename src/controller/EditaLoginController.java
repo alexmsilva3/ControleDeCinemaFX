@@ -39,7 +39,7 @@ public class EditaLoginController implements Initializable {
         // TODO
     }
     
-    public void redebelogin(Login login){
+    public void redebeLogin(Login login){
         idLogin.setText(login.getIdLogin().toString());
         txtUsuario.setText(login.getUsuario());
         txtNome.setText(login.getNome());
@@ -50,14 +50,14 @@ public class EditaLoginController implements Initializable {
     void SalvarLogin() {
         try{
             Login login = new Login();
-             int validador = 4;
+             int validador = 3;
 
             //valida campos
             if (txtUsuario.getText() == null || txtUsuario.getText().isEmpty()) {validador = validador-1; txtUsuario.setStyle("-fx-border-color: red;");}
             if (txtNome.getText() == null || txtNome.getText().isEmpty()) {validador = validador-1;txtNome.setStyle("-fx-border-color: red;");}
             if (txtSenha.getText() == null || txtSenha.getText().isEmpty()) {validador = validador-1;txtSenha.setStyle("-fx-border-color: red;");}
 
-            if (validador == 5) {
+            if (validador == 3) {
                 login.setIdLogin(Integer.parseInt(idLogin.getText()));
                 
                 login.setUsuario(txtUsuario.getText());
@@ -93,7 +93,7 @@ public class EditaLoginController implements Initializable {
                 AnchorPaneNovoLogin.getChildren().setAll(a);
             }
         }catch (Exception e) {
-            //servicos.gravaLog(e.toString());
+            servicos.gravaLog(e.toString());
             AnchorPaneNovoLogin.setVisible(false);
         }
     }

@@ -18,27 +18,6 @@ public class HomeController implements Initializable {
 
     @FXML
     private AnchorPane AnchorPaneBg;
-
-    @FXML
-    private JFXButton btnDashboard;
-
-    @FXML
-    private JFXButton btnFilmes;
-
-    @FXML
-    private JFXButton btnSalas;
-
-    @FXML
-    private JFXButton btnSessoes;
-
-    @FXML
-    private JFXButton btnVendaIngresso;
-
-    @FXML
-    private JFXButton btnLogin;
-
-    @FXML
-    private JFXButton btnSair;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,7 +35,7 @@ public class HomeController implements Initializable {
     @FXML
     public void vendaIngresso(ActionEvent event) {
         try {
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/VendaIngresso.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaIngresso.fxml"));
             AnchorPaneBg.getChildren().setAll(a);
         }catch (Exception e){}
     }

@@ -4,7 +4,6 @@ import classes.Sessao;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
@@ -25,22 +23,20 @@ import javafx.scene.layout.AnchorPane;
 import servicos.ServicoSessao;
 import servicos.ServicosGerais;
 
-public class ListaSessoesController implements Initializable {
-    
+public class ListaIngressoController implements Initializable {
+
     ServicoSessao servicoSessao = new ServicoSessao();
     ServicosGerais servicos = new ServicosGerais();
-
+    
     @FXML
-    private AnchorPane AnchorPanelListaSessao;
+    private AnchorPane AnchorPanelVendaIngresso;
 
     @FXML
     private JFXTextField txtSearch;
 
-    @FXML
-    private TableView<Sessao> tableViewSessoes;
 
     @FXML
-    private TableColumn<Sessao, String> tblColIdSessao;
+    private TableView<Sessao> tableViewSessoes;
 
     @FXML
     private TableColumn<Sessao, String> tblColFilme;
@@ -56,7 +52,7 @@ public class ListaSessoesController implements Initializable {
 
     @FXML
     private TableColumn<Sessao, String> tblColPreco;
-    
+
     @FXML
     private TableColumn<Sessao, String> tblColIngresso;
 
@@ -74,31 +70,21 @@ public class ListaSessoesController implements Initializable {
         tblColIngresso.setCellValueFactory(cellIngresso -> new SimpleStringProperty(cellIngresso.getValue().getIngressosDisponiveis().toString()));
         
         tableViewSessoes.setItems(observableListSessao);
-    }    
-    
-    @FXML
-    public void novaSessao() {
-        try{
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/NovaSessao.fxml"));
-            AnchorPanelListaSessao.getChildren().setAll(a);
-        }catch (Exception e) {
-            AnchorPanelListaSessao.setVisible(false);
-        }
     }
 
     @FXML
-    public void editaSessao( ) {
+    public void vendeIngresso() {
         try{
             //precisa buscar o item selecionado para verificar no if se tem ou nao algo selecionado
             Sessao ses = tableViewSessoes.getSelectionModel().getSelectedItem();
 
             if (ses != null) {
                 Sessao sessao = servicoSessao.buscaSessao(ses.getIdSessao());
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditaSessao.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VendaIngresso.fxml"));
                 Parent root = (Parent) loader.load();
-                EditaSessaoController controller = loader.getController();
+                VendaIngressoController controller = loader.getController();
                 controller.redebeSessao(sessao);
-                AnchorPanelListaSessao.getChildren().setAll(root);
+                AnchorPanelVendaIngresso.getChildren().setAll(root);
             }
             else{
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -108,56 +94,21 @@ public class ListaSessoesController implements Initializable {
         }catch (Exception e) {
             servicos.gravaLog(e.toString());
             servicos.Mensagem(Alert.AlertType.ERROR,"Cadastro Não Realizado", "Os dados não foram gravados", "Verifique o arquivo de log e tente novamente", null);
-            AnchorPanelListaSessao.setVisible(false);
+            AnchorPanelVendaIngresso.setVisible(false);
         }
     }
 
-    
-
     @FXML
-    void removeSessao() {
+    public void VoltarMenuPrincipal() {
         try{
-            Sessao sessao = tableViewSessoes.getSelectionModel().getSelectedItem();
-            if (sessao != null) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Tem certeza?");
-                alert.setHeaderText("Os dados serão apagados");
-                alert.setContentText("Tem certeza que deseja cancelar essa operação?");
-                Optional <ButtonType> action = alert.showAndWait();
-
-                if (action.get() == ButtonType.OK) {
-                    servicoSessao.removeSessao(sessao.getIdSessao());
-                    //refresh na pagina
-                    AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaSessoes.fxml"));
-                    AnchorPanelListaSessao.getChildren().setAll(a);
-                }
-                else if (action.get() == ButtonType.CANCEL || action.get() == ButtonType.CLOSE){
-                    alert.close();
-                }
-            }
-            else{
-                Alert alerta = new Alert(Alert.AlertType.ERROR);
-                alerta.setContentText("Por favor selecione um login na lista");
-                alerta.show();
-            }
+            AnchorPanelVendaIngresso.setVisible(false);
         }catch (Exception e) {
-            servicos.gravaLog(e.toString());
-            servicos.Mensagem(Alert.AlertType.ERROR,"Cadastro Não Realizado", "Os dados não foram gravados", "Verifique o arquivo de log e tente novamente", null);
-            AnchorPanelListaSessao.setVisible(false);
+            AnchorPanelVendaIngresso.setVisible(false);
         }
     }
     
     @FXML
-    void VoltarMenuPrincipal() {
-        try{
-            AnchorPanelListaSessao.setVisible(false);
-        }catch (Exception e) {
-            AnchorPanelListaSessao.setVisible(false);
-        }
-    }
-    
-    @FXML
-    private void search(KeyEvent event){
+    public void search(KeyEvent event) {
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
         
         filtro.setPredicate((Predicate<? super Sessao>) (Sessao ses)->{
@@ -181,4 +132,7 @@ public class ListaSessoesController implements Initializable {
         sort.comparatorProperty().bind(tableViewSessoes.comparatorProperty());
         tableViewSessoes.setItems(sort);
     }
+    
+        
+    
 }

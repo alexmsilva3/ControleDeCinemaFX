@@ -19,7 +19,7 @@
             </ImageView>
          </children></AnchorPane>
       <Pane prefHeight="166.0" prefWidth="200.0" style="-fx-border-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Pane fx:id="footerPane" layoutY="163.0" prefHeight="468.0" prefWidth="200.0" style="-fx-background-color: #5F9CD2; -fx-border-color: black;" AnchorPane.leftAnchor="0.0">
+      <Pane fx:id="footerPane" layoutY="163.0" prefHeight="469.0" prefWidth="200.0" style="-fx-background-color: #5F9CD2; -fx-border-color: black;" AnchorPane.leftAnchor="0.0">
          <children>
             <JFXButton fx:id="btnDashboard" onAction="#dashboard" prefHeight="51.0" prefWidth="200.0" text="Dashboard">
                <font>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ServicoLogin {
     mysql banco = new mysql();
+    ServicosGerais servico = new ServicosGerais();
     
     public boolean verificaLogin(String usuario, String senha){
         try{
@@ -29,12 +30,12 @@ public class ServicoLogin {
         }
         catch (Exception e)
         {
-
+            servico.gravaLog("Erro: Não foi possível realizar o login. Motivo: "+ e);
         }
         return false;
     }
     
-    public void insereFilme(Login login){
+    public boolean insereLogin(Login login){
         try{
             Class.forName(banco.getDriver());
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
@@ -46,20 +47,22 @@ public class ServicoLogin {
             PreparedStatement ex = conn.prepareStatement(query);
             ex.execute();
             conn.close();
+            return true;
         }
         catch (Exception e) {
-            //servico.gravaLog("Erro: Não foi possível adicionar o usuario. Motivo: "+ e);
+            servico.gravaLog("Erro: Não foi possível adicionar o usuario. Motivo: "+ e);
+            return false;
         }
     }
     
-    public ArrayList<Login> listaFilme(){
+    public ArrayList<Login> listaLogin(){
         ArrayList<Login> listaLogin = new ArrayList<>();
         
         try {
             Class.forName(banco.getDriver());
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
 
-            String query = "SELECT * FROM Login ";
+            String query = "SELECT * FROM login;";
 
             PreparedStatement ex = conn.prepareStatement(query);
             ResultSet rs = ex.executeQuery(query);
@@ -77,7 +80,7 @@ public class ServicoLogin {
 
             conn.close();
         } catch (Exception e) {
-            //servico.gravaLog("Não foi possível buscar o usuario. Motivo:" + e);
+            servico.gravaLog("Não foi possível buscar o usuario. Motivo:" + e);
         }
         return listaLogin;
     }
@@ -104,7 +107,7 @@ public class ServicoLogin {
             conn.close();
         } catch (Exception e) {
             System.err.println("Erro! " + e);
-            //servico.gravaLog("Não foi possível buscar o usuario. Motivo:" + e);
+            servico.gravaLog("Não foi possível buscar o usuario. Motivo:" + e);
         }
         
         return login;
@@ -116,22 +119,22 @@ public class ServicoLogin {
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
             
             String query = "UPDATE login " +
-            "SET Nome = '"+login.getNome()+"',"
-                    + "Usuario = '"+login.getUsuario()+"',"
-                    + "Senha = '"+login.getSenha()+"' " +
-            "WHERE idfilme = '"+login.getIdLogin()+"' ";
+            "SET nome = '"+login.getNome()+"',"
+                    + "usuario = '"+login.getUsuario()+"',"
+                    + "senha = '"+login.getSenha()+"' " +
+            "WHERE idlogin = '"+login.getIdLogin()+"' ";
             
             PreparedStatement ex = conn.prepareStatement(query);
             ex.execute();
             
             conn.close();
-            //servico.gravaLog("Usuario id: "+login.getIdLogin()+" |Nome: "+login.getNome()+" .Editado com sucesso");
+            servico.gravaLog("Usuario id: "+login.getIdLogin()+" |Nome: "+login.getNome()+" .Editado com sucesso");
             
             return true;
             
         }
         catch (Exception e) {
-            //servico.gravaLog("Erro: Não foi possível editar o usuario. Motivo: "+ e);
+            servico.gravaLog("Erro: Não foi possível editar o usuario. Motivo: "+ e);
             return false;
         }
     }
@@ -141,10 +144,10 @@ public class ServicoLogin {
             Class.forName(banco.getDriver());
             Connection conn = DriverManager.getConnection(banco.getUrl(), banco.getUsuario(), banco.getSenha());
             
-            String query = "DELETE FROM Login WHERE IdLogin = '"+idLogin+"' ";
+            String query = "DELETE FROM login WHERE idlogin = '"+idLogin+"' ";
             PreparedStatement ex = conn.prepareStatement(query);
-            ResultSet rs = ex.executeQuery(query);
-            //servico.gravaLog(query);
+            ex.execute();
+            servico.gravaLog(query);
             conn.close();
             
         } catch (Exception e) {

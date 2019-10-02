@@ -1,9 +1,8 @@
 package controller;
 
-import classes.Filme;
-import classes.Sala;
 import classes.Sessao;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
@@ -11,8 +10,11 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,16 +37,13 @@ public class EditaSessaoController implements Initializable {
     private Label idSessao;
     
     @FXML
-    private JFXTextField txtFilme;
+    private JFXComboBox<String> dropFilmes;
 
     @FXML
-    private JFXTextField txtSala;
+    private JFXComboBox<String> dropSalas;
 
     @FXML
     private JFXTextField txtValor;
-
-    @FXML
-    private JFXButton btnVoltar;
 
     @FXML
     private JFXDatePicker Data;
@@ -53,50 +52,60 @@ public class EditaSessaoController implements Initializable {
     private JFXTimePicker Hora;
 
     @FXML
-    private JFXTextField txtLotacao;
+    private Label txtLotacao;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        dropFilmes.getItems().clear();
+        dropFilmes.setItems(servicoFilme.observableListFilme());
+        
+        dropSalas.getItems().clear();
+        dropSalas.setItems(servicoSala.observableListSala());
+        
+        dropSalas.valueProperty().addListener(new ChangeListener<String>(){
+            @Override public void changed(ObservableValue ov, String t, String t1) {
+            txtLotacao.setText(servicoSala.buscaSala(Integer.parseInt(t1)).getCapacidade().toString());
+            }
+        });
     }
     
     public void redebeSessao(Sessao sessao){
-        Filme filme = new Filme();
-        Sala sala = new Sala();
-        //sessao.getData()
+        try{
+            idSessao.setText(sessao.getIdSessao().toString());
+            dropFilmes.setValue(sessao.getFilme().getTitulo());
+            dropSalas.setValue(sessao.getSala().getIdSala().toString());
+            txtValor.setText(sessao.getValorIngresso().toString());
+            //converssão de data e hora
+            Data.setValue(LocalDate.parse(sessao.getData().toString()));
+            Hora.setValue(sessao.getHorario().toLocalTime());
+            txtLotacao.setText(sessao.getIngressosDisponiveis().toString());
+        }
+        catch(Exception e){
+            servicos.gravaLog(e.toString());
+        }
         
-        idSessao.setText(sessao.getIdSessao().toString());
-        txtFilme.setText(servicoFilme.buscaFilme(sessao.getFilme().getIdFilme()).toString());
-        txtSala.setText(servicoSala.buscaSala(sessao.getSala().getIdSala()).toString());
-        txtValor.setText(sessao.getValorIngresso().toString());
-        
-        
-        //string to date/time
-        //Data.setValue();
-        //Hora.setText(filme.getDuracao().toString());
-        
-        txtLotacao.setText(sessao.getIngressosDisponiveis().toString());
     }
     
     @FXML
     void SalvarSessao() {
         try{
             Sessao sessao = new Sessao();
+            LocalDateTime  hoje = LocalDateTime.now();
              int validador = 6;
 
             //valida campos
-            if (txtFilme.getText() == null || txtFilme.getText().isEmpty()) {validador = validador-1; txtFilme.setStyle("-fx-border-color: red;");}
-            if (txtSala.getText() == null || txtSala.getText().isEmpty()) {validador = validador-1;txtSala.setStyle("-fx-border-color: red;");}
+            if (dropFilmes.getValue()== null || dropFilmes.getValue().isEmpty()) {validador = validador-1; dropFilmes.setStyle("-fx-border-color: red;");}
+            if (dropSalas.getValue() == null || dropSalas.getValue().isEmpty()) {validador = validador-1;dropSalas.setStyle("-fx-border-color: red;");}
             if (txtValor.getText() == null || txtValor.getText().isEmpty()) {validador = validador-1;txtValor.setStyle("-fx-border-color: red;");}
-            if (Data.getValue() == null || Data.getValue().toString().isEmpty()) {validador = validador-1;Data.setStyle("-fx-border-color: red;");}
+            if (Data.getValue() == null || Data.getValue().toString().isEmpty() || Data.getValue().isBefore(hoje.toLocalDate())) {validador = validador-1;Data.setStyle("-fx-border-color: red;");}
             if (Hora.getValue() == null || Hora.getValue().toString().isEmpty()) {validador = validador-1;Hora.setStyle("-fx-border-color: red;");}
             if (txtLotacao.getText() == null || txtLotacao.getText().isEmpty()) {validador = validador-1;txtLotacao.setStyle("-fx-border-color: red;");}
-
+            
             if (validador == 6) {
                 sessao.setIdSessao(Integer.parseInt(idSessao.getText()));
                 
-                sessao.setFilme(servicoFilme.buscaFilme(sessao.getFilme().getIdFilme()));
-                sessao.setSala(servicoSala.buscaSala(sessao.getSala().getIdSala()));
+                sessao.setFilme(servicoFilme.buscaNomeFilme(dropFilmes.getValue()));
+                sessao.setSala(servicoSala.buscaSala(Integer.parseInt(dropSalas.getValue())));
                 sessao.setValorIngresso(Integer.parseInt(txtValor.getText()));
                 sessao.setIngressosDisponiveis(Integer.parseInt(txtLotacao.getText()));
                 
@@ -136,7 +145,7 @@ public class EditaSessaoController implements Initializable {
                 AnchorPaneNovaSessao.getChildren().setAll(a);
             }
         }catch (Exception e) {
-            //servicos.gravaLog(e.toString());
+            servicos.gravaLog(e.toString());
             AnchorPaneNovaSessao.setVisible(false);
         }
     }

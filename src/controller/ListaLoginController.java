@@ -29,12 +29,6 @@ public class ListaLoginController implements Initializable {
     private AnchorPane AnchorPanelListaLogin;
 
     @FXML
-    private JFXButton btnAddLogin;
-
-    @FXML
-    private JFXButton btnEditarLogin;
-
-    @FXML
     private TableView<Login> tableViewUsuarios;
     
     @FXML
@@ -45,18 +39,12 @@ public class ListaLoginController implements Initializable {
 
     @FXML
     private TableColumn<Login, String> tblColUsuario;
-
-    @FXML
-    private JFXButton btnVoltar;
-
-    @FXML
-    private JFXButton btnRemoverLogin;
     
-    ObservableList observableListLogin = FXCollections.observableArrayList(/**/);
+    ObservableList observableListLogin = FXCollections.observableArrayList(servicoLogin.listaLogin());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tblColN.setCellValueFactory(new PropertyValueFactory<>("idusuario"));
+        tblColN.setCellValueFactory(new PropertyValueFactory<>("idlogin"));
         tblColNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tblColUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
         
@@ -82,8 +70,8 @@ public class ListaLoginController implements Initializable {
                 Login login = servicoLogin.buscaLogin(log.getIdLogin());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditaLogin.fxml"));
                 Parent root = (Parent) loader.load();
-                //EditaLoginController controller = loader.getController();
-                //controller.recebeLogin(login);
+                EditaLoginController controller = loader.getController();
+                controller.redebeLogin(login);
                 AnchorPanelListaLogin.getChildren().setAll(root);
             }
             else{
@@ -92,8 +80,8 @@ public class ListaLoginController implements Initializable {
                 alerta.show();
             }
         }catch (Exception e) {
-            //servicos.gravaLog(e.toString());
-            //servicos.Mensagem(Alert.AlertType.ERROR,"Cadastro Não Realizado", "Os dados não foram gravados", "Verifique o arquivo de log e tente novamente", null);
+            servicos.gravaLog(e.toString());
+            servicos.Mensagem(Alert.AlertType.ERROR,"Cadastro Não Realizado", "Os dados não foram gravados", "Verifique o arquivo de log e tente novamente", null);
             AnchorPanelListaLogin.setVisible(false);
         }
     }
@@ -101,7 +89,7 @@ public class ListaLoginController implements Initializable {
     @FXML
     public void novoLogin() {
         try{
-            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CadastroLogin.fxml"));
+            AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/NovoLogin.fxml"));
             AnchorPanelListaLogin.getChildren().setAll(a);
         }catch (Exception e) {
             AnchorPanelListaLogin.setVisible(false);
@@ -135,8 +123,8 @@ public class ListaLoginController implements Initializable {
                 alerta.show();
             }
         }catch (Exception e) {
-            //servicos.gravaLog(e.toString());
-            //servicos.Mensagem(Alert.AlertType.ERROR,"Cadastro Não Realizado", "Os dados não foram gravados", "Verifique o arquivo de log e tente novamente", null);
+            servicos.gravaLog(e.toString());
+            servicos.Mensagem(Alert.AlertType.ERROR,"Cadastro Não Realizado", "Os dados não foram gravados", "Verifique o arquivo de log e tente novamente", null);
             AnchorPanelListaLogin.setVisible(false);
         }
     }

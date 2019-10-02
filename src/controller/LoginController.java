@@ -36,12 +36,6 @@ public class LoginController implements Initializable {
     @FXML
     private JFXPasswordField txtSenha;
 
-    @FXML
-    private JFXButton btnCancelar;
-
-    @FXML
-    private JFXButton btnEntrar;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -64,7 +58,9 @@ public class LoginController implements Initializable {
             else{
                 servicos.MensagemErro("Usuário ou Senha incorreto!", "Usuario ou senha inválido.");
             }
-        }catch (Exception e){System.out.println(e);}
+        }catch (Exception e){
+            servicos.gravaLog(e.toString());
+        }
     }
     
     @FXML

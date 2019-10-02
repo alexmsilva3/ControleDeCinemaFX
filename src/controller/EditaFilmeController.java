@@ -41,9 +41,6 @@ public class EditaFilmeController implements Initializable {
     @FXML
     private JFXTextField txtDuracao;
 
-    @FXML
-    private JFXButton btnVoltar;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -82,7 +79,7 @@ public class EditaFilmeController implements Initializable {
 
                 if (servicoFilme.editaFilme(filme)) {
                     if(servicos.Mensagem(Alert.AlertType.CONFIRMATION,"Cadastro Realizado", "Dados gravados com sucesso", null, null)){
-                        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/listaFilme.fxml"));
+                        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ListaFilmes.fxml"));
                         AnchorPaneNovoFilme.getChildren().setAll(a);
                     }
                 }
@@ -109,7 +106,7 @@ public class EditaFilmeController implements Initializable {
                 AnchorPaneNovoFilme.getChildren().setAll(a);
             }
         }catch (Exception e) {
-            //servicos.gravaLog(e.toString());
+            servicos.gravaLog(e.toString());
             AnchorPaneNovoFilme.setVisible(false);
         }
     }
